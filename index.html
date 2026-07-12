@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width", initial-scale=1.0>
+
+        <title>Expense Tracker</title>
+
+        <link rel="stylesheet" href="css/style.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        />
+
+        <script src="js/script.js"></script>
+    </head>
+
+    <body>
+
+        <!--HEADER-->
+        <header>
+            <div class="logo">
+
+                <img src="assets/images/Money-mate.png" alt="Expense Tracker Logo"
+                class="logo-image">
+
+                <div class="logo-text">
+                    <h1>Money Mate</h1>
+                    <p>Smart Personal Finance</p>
+                </div>
+
+            </div>
+
+            <button id="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </header>
+
+        <!--MAIN CONTENT-->
+        <main>
+
+            <div class="container">
+
+            <!--DASHBOARD-->
+            <section id="dashboard">
+
+                <article class="dashboard-card">
+                    <h2>
+                        <i class="fa-solid fa-wallet balance-icon"></i>
+                        Balance
+                    </h2>
+                    <p class="amount">&#8377;0.00</p>
+                </article>
+
+                <article class="dashboard-card">
+                    <h2>
+                        <i class="fa-solid fa-arrow-trend-up income-icon"></i>
+                        Income
+                    </h2>
+                    <p class="amount">&#8377;0.00</p>
+                </article>
+
+                <article class="dashboard-card">
+                    <h2>
+                        <i class="fa-solid fa-arrow-trend-down expense-icon"></i>
+                        Expenses
+                    </h2>
+                    <p class="amount">&#8377;0.00</p>
+                </article>
+
+                <article class="dashboard-card">
+                    <h2>
+                        <i class="fa-solid fa-piggy-bank budget-icon"></i>
+                        Monthly Budget
+                    </h2>
+                    <p class="amount">&#8377;0.00</p>
+                </article>
+
+            </section>
+
+            <!--CONTROLS-->
+            <section id="controls">
+
+                <button id="addTransactionBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Transaction 
+                </button>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input 
+                    type="search" 
+                    id="search" 
+                    placeholder="Search Transactions...">
+                </div>
+                  
+                <div class="filter-group">
+                    <label for="categoryFilter">Category</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="food">🍔 Food</option>
+                        <option value="groceries">🛒 Groceries</option>
+                        <option value="transport">🚗 Transport</option>
+                        <option value="shopping">🛍️ Shopping</option>
+                        <option value="bills">🧾 Bills</option>
+                        <option value="medical">🏥 Medical</option>
+                        <option value="entertainment">🎬 Entertainment</option>
+                        <option value="education">📚 Education</option>
+                        <option value="travel">✈️ Travel</option>
+                        <option value="technology">💻 Technology</option>
+                        <option value="salary">💸 Salary</option>
+                        <option value="investment">📈 Investment</option>
+                        <option value="other">📦 Other</option>
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label for="monthFilter">Month</label>
+                    <select id="monthFilter">
+                        <option value="">All Months</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="yearFilter">Year</label>
+                    <select id="yearFilter">
+                        <option value="">All Years</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="typeFilter">Type</label>
+                    <select id="typeFilter">
+                        <option value="all">All Types</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+
+            </section>
+
+            <!--TRANSACTIONS-->
+            <section id="transactions">
+
+                <h2>Transaction History</h2>
+
+                <div class="table-container">
+                    <table>
+
+                    <caption class="visually-hidden">
+                        Transaction History
+                    </caption>
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="transactionList">
+                        <tr>
+                            <td colspan="6">
+                                No transactions found.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    </table>
+                </div>
+
+            </section>
+
+            <!--ANALYTICS-->
+            <section id="analytics">
+
+                <article class="chart-card">
+                    <h2>Expenses by Category</h2>
+                    <canvas id="categoryChart"></canvas>
+                </article>
+
+                <article class="chart-card">
+                    <h2>Monthly Expenses</h2>
+                    <canvas id="monthlyChart"></canvas>
+                </article>
+
+                <article class="chart-card">
+                    <h2>Yearly Expenses</h2>
+                    <canvas id="yearlyChart"></canvas>
+                </article>
+                
+            </section>
+
+            <!--INSIGHTS-->
+            <section id="insights">
+
+                <section id="recentActivity">
+                    <h2>Recent Activity</h2>
+                </section>
+
+                <section id="monthlySummary">
+                    <h2>Monthly Summary</h2>
+                </section>
+
+            </section>
+
+            </div>
+
+        </main>
+
+        <dialog id="transactionDialog">
+
+            <form id="transactionForm">
+                <h2>Add Transaction</h2>
+
+                <label for="date">Date</label>
+                <input 
+                type="date" 
+                id="date" 
+                name="date" 
+                required>
+
+                <label for="description">Description</label>
+                <input 
+                type="text" 
+                id="description" 
+                name="description"
+                placeholder="Enter description"
+                required>
+
+                <label for="amount">Amount</label>
+                <input type="number" 
+                id="amount" 
+                name="amount" 
+                placeholder="0.00" 
+                min="0"
+                step="0.01"
+                required>
+
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="" selected disabled>
+                        Select Category
+                    </option>
+                    <option value="food">🍔 Food</option>
+                    <option value="groceries">🛒 Groceries</option>
+                    <option value="transport">🚗 Transport</option>
+                    <option value="shopping">🛍️ Shopping</option>
+                    <option value="bills">🧾 Bills</option>
+                    <option value="medical">🏥 Medical</option>
+                    <option value="entertainment">🎬 Entertainment</option>
+                    <option value="education">📚 Education</option>
+                    <option value="travel">✈️ Travel</option>
+                    <option value="technology">💻 Technology</option>
+                    <option value="salary">💸 Salary</option>
+                    <option value="investment">📈 Investment</option>
+                    <option value="other">📦 Other</option>
+                </select>
+
+                <label>Type</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio"
+                        name="type"
+                        value="income"
+                        checked>
+                        Income
+                    </label>
+
+                    <label>
+                        <input type="radio"
+                        name="type"
+                        value="expense">
+                        Expense
+                    </label>
+                </div>
+
+                <div class="dialog-buttons">
+                    <button type="button" id="cancelBtn">
+                        Cancel
+                    </button>
+                    <button type="submit" id="saveBtn">
+                        Save Transaction
+                    </button>
+                </div>
+
+                <label for="notes">
+                    Notes
+                </label>
+
+                <textarea
+                    id="notes"
+                    name="notes"
+                    rows="3"
+                    placeholder="Optional notes">
+                </textarea>
+
+            </form>
+        </dialog>
+
+        <footer>
+            <p>&copy; 2026 Money Mate | Created by Hiral Patel</p>
+        </footer>
+
+    </body>
+
+   
+
+</html>
